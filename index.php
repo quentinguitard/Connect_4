@@ -12,7 +12,7 @@
 	</div>
 
 	<script>
-	$('#container').puissance_4(7,7);
+	$('#container').puissance_4(6,7);
 	</script>
 </body>
 </html>

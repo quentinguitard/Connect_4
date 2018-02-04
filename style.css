@@ -43,10 +43,26 @@
 .red {
 	background-color: red;
 }
-
 .yellow {
 	background-color: yellow;
 }
+.green {
+	background-color: green;
+}
+.pink {
+	background-color: pink;
+}
+.orange {
+	background-color: orange;
+}
+.black {
+	background-color: black;
+}
+.purple {
+	background-color: purple;
+}
+
+
 
 .win {
 	background-image: url("img/Super.jpg");
@@ -68,7 +84,7 @@ p {
 }
 h1 {
 	font-weight: bold;
-	font-size: 40px;
+	font-size: 40px;		
 }
 
 button {

@@ -1,5 +1,6 @@
-$.fn.puissance_4 = function (x , y){
-	var player = "red";
+$.fn.puissance_4 = function (x , y, player1, player2){
+	var player = player1;
+	console.log(player);
 	for(let i = 0 ; i<x ;i++){
 		var row = $('<div>').addClass('row');
 		for( let j = 0; j < y; j++){
@@ -8,6 +9,8 @@ $.fn.puissance_4 = function (x , y){
 		}
 		$(this).append(row);
 	}
+
+	
 
 
 	$(this).append("<button id='undo'>Undo</button>");
@@ -56,24 +59,27 @@ $.fn.puissance_4 = function (x , y){
 
 	$(this).on('mouseleave', '.col', function(){
 		$('.col').removeClass('hover-'+player);
-	});*/
+	});
+*/
 
 	$(this).on('click', '#undo', function(){
 
 		var col = $('.last-played').data('col');
 		var row = $('.last-played').data('row');
 
-		if(player === 'red'){
+		if(player === player1){
 			boardP2[row][col] = '0';
 		}
 
-		if(player === 'yellow'){
+		if(player === player2){
 			boardP1[row][col] = '0';
 		}
 
-		player = (player === 'red') ? 'yellow' : 'red';
+		player = (player === player1) ? player2 : player1;
 		$('.last-played').addClass('empty');
-		$('.last-played').removeClass('last-played yellow red');
+		$('.last-played').removeClass(player1);
+		$('.last-played').removeClass(player2);
+		$('.last-played').removeClass('last-played');
 
 	});
 
@@ -119,7 +125,7 @@ $.fn.puissance_4 = function (x , y){
 		drop(firstColEmpty,lastColEmpty, y, player, function(firstColEmpty,lastColEmpty){
 
 
-			if(player === 'red'){
+			if(player === player1){
 				boardP1[lastColEmpty.data('row')][lastColEmpty.data('col')] = '1';
 				console.log(boardP1);
 				if(checkHorizontal(boardP1) === true || checkVertical(boardP1) === true || checkDiagonalDown(boardP1) === true || checkDiagonalUp(boardP1) === true){
@@ -131,7 +137,7 @@ $.fn.puissance_4 = function (x , y){
 				}			
 			}
 
-			if(player === 'yellow'){
+			if(player === player2){
 				boardP2[lastColEmpty.data('row')][lastColEmpty.data('col')] = '1';			
 				if(checkVertical(boardP2) == true || checkHorizontal(boardP2) === true || checkDiagonalDown(boardP2) === true || checkDiagonalUp(boardP2) === true){
 					$('#container').addClass('win');
@@ -148,7 +154,7 @@ $.fn.puissance_4 = function (x , y){
 			lastColEmpty.addClass(player);
 			lastColEmpty.addClass('last-played');
 
-			player = (player === 'red') ? 'yellow' : 'red';
+			player = (player === player1) ? player2 : player1;
 			$(this).trigger('mouseenter');
 		});
 
